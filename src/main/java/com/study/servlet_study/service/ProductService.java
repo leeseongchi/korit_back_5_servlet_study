@@ -25,6 +25,6 @@ public class ProductService {
 	}
 	
 	public Product getProduct(String productName) {
-		return productRepository.findProductByproductName(productName);
+		return productRepository.findProductByProductName(productName);
 	}
 }

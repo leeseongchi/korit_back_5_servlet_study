@@ -11,7 +11,7 @@ public class ProductRepository {
 	private List<Product> productList;
 	
 	private ProductRepository() {
-		productList = new ArrayList<>();
+		productList = new ArrayList<>(); 
 	}
 	
 	public static ProductRepository getInstance() {
@@ -26,9 +26,10 @@ public class ProductRepository {
 		return 1;
 	}
 	
-	public Product findProductByproductName(String productName) {
+	public Product findProductByProductName(String productName) {
 		Product findProduct = null;
-		for (Product product : productList) {
+		
+		for(Product product : productList) {
 			if(product.getProductName().equals(productName)) {
 				findProduct = product;
 				break;
