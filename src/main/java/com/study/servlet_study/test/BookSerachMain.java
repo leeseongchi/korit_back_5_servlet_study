@@ -31,21 +31,28 @@ public class BookSerachMain {
 		
 		try {
 			con = pool.getConnection();
+			System.out.print("검색할 도서명을 입력하세요 >>> ");
 			name = "%" + scanner.nextLine() + "%";
 			String sql = "select\r\n"
-					+ "	bt.book_name,\r\n"
+					+ "	bt.book_id,\r\n"
+					+ "    bt.book_name,\r\n"
+					+ "    bt.author_id,\r\n"
 					+ "    at.author_name,\r\n"
+					+ "    bt.publisher_id,\r\n"
 					+ "    pt.publisher_name\r\n"
 					+ "from\r\n"
 					+ "	book_tb bt\r\n"
-					+ "	left outer join author_tb at on(at.author_id = bt.author_id)\r\n"
+					+ "    left outer join author_tb at on(at.author_id = bt.author_id)\r\n"
 					+ "    left outer join publisher_tb pt on(pt.publisher_id = bt.publisher_id)\r\n"
 					+ "where\r\n"
 					+ "	book_name like ?\r\n"
 					+ "group by\r\n"
-					+ "	book_name,\r\n"
-					+ "    author_name,\r\n"
-					+ "    publisher_name";
+					+ "	bt.book_id,\r\n"
+					+ "    bt.book_name,\r\n"
+					+ "    at.author_name,\r\n"
+					+ "    pt.publisher_name\r\n"
+					+ "order by\r\n"
+					+ "	book_name";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, name);
 			
